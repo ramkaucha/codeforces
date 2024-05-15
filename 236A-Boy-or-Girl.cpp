@@ -1,29 +1,25 @@
 #include <iostream>
 #include <string>
-
+#include <algorithm>
 using namespace std;
 
-int main() {
-	string s;
-	getline(cin, s);
-
-	int index=0;
-	for(int i=0; i<s.length();++i) {
-		int j;
-		for (j=0;j<i;j++) {
-			if (s[i] == s[j]) {
-				break;
-			}
-		}
-
-		if(j==i) {
-			s[index++] = s[i];
+int removeDup (string str, int n) {
+	sort(str.begin(), str.end());
+	int c = n;
+	for (int i = 0; i < n; ++i) {
+		if (str[i] == str[i + 1]) {
+			c--;
 		}
 	}
 
-	cout<<s<<endl;
-
-	if (s.length() % 2 == 1) {
+	return c;
+}
+int main() {
+	string s;
+	getline(cin, s);
+	int n = s.length();
+	int nL = removeDup(s, n);
+	if (nL % 2 == 1) {
 		cout<<"IGNORE HIM!"<<endl;
 	} else {
 		cout<<"CHAT WITH HER!"<<endl;
